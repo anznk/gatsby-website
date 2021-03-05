@@ -41,7 +41,8 @@ module.exports = {
     basePath: '/',
   },
   plugins: [
-    `gatsby-plugin-emotion`,
+    'gatsby-plugin-sass',
+    'gatsby-plugin-emotion',
     'gatsby-plugin-theme-ui',
     'gatsby-plugin-react-helmet',
     {

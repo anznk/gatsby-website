@@ -61,6 +61,21 @@ const Menu = () => {
         </ul>
       </Nav>
     </Header>
+  // <nav role="navigation">
+  //   <ul className="navigation">
+  //     <li className="navigationItem">
+  //       <Link to="/">フルーツ</Link>
+  //     </li>
+  //     <li className="navigationItem">
+  //       <Link to="/things/">伝統野菜</Link>
+  //     </li>
+  //     <li className="navigationItem">
+  //       <Link to="/food/">ナス</Link>
+  //     </li>
+  //   </ul>
+  // </nav>
+
+
   )
 }
 
