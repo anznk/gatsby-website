@@ -10,16 +10,14 @@ import PageTitle from '../components/PageTitle'
 import Pagination from '../components/Pagination'
 import Container from '../components/Container'
 
-const TagTemplate = ({ data, pageContext }) => {
-  console.log("data",data);
-  console.log("pageContext",pageContext);
+const CategoryTemplate = ({ data, pageContext }) => {
   const posts = orderBy(
     data.contentfulTag.post,
     // eslint-disable-next-line
     [object => new moment(object.publishDateISO)],
     ['desc']
   )
-console.log("posts",posts);
+
   const { title } = data.contentfulTag
   const numberOfPosts = posts.length
   const skip = pageContext.skip
@@ -42,19 +40,13 @@ console.log("posts",posts);
           image={ogImage}
         />
         <Container>
-        <div>aaaaa</div>
-          {/* <PageTitle small>
-            {numberOfPosts} Posts Tagged: &ldquo;
-            {title}
-            &rdquo;
-          </PageTitle> */}
           <CardList>
             {posts.slice(skip, limit * humanPageNumber).map(post => (
               <Card {...post} key={post.id} basePath={basePath} />
             ))}
           </CardList>
         </Container>
-        <Pagination context={pageContext} />
+        {/* <Pagination context={pageContext} /> */}
       </Layout>
     </>
   )
@@ -93,4 +85,4 @@ export const query = graphql`
   }
 `
 
-export default TagTemplate
+export default CategoryTemplate

@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import CardList from '../components/CardList'
 import Card from '../components/Card'
@@ -8,6 +8,7 @@ import Pagination from '../components/Pagination'
 import SEO from '../components/SEO'
 import { startCase } from 'lodash'
 import "../styles/posts.scss"
+// import TagTemplate from '../components/tag'
 
 const Posts = ({ data, pageContext }) => {
   const posts = data.allContentfulPost.edges
@@ -39,6 +40,8 @@ const Posts = ({ data, pageContext }) => {
             </div>
           </div>
         </div>
+        <Link to="/tag/obedient/">obedient</Link>
+        {/* <TagTemplate tags="obedient" basePath="/tag/" /> */}
           <CardList>
             {posts.map(({ node: post }) => (
               <Card key={post.id} {...post} basePath={basePath} />
