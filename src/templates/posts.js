@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
+import styled from '@emotion/styled'
 import Layout from '../components/Layout'
 import CardList from '../components/CardList'
 import Card from '../components/Card'
@@ -11,6 +12,12 @@ import SEO from '../components/SEO'
 import { startCase } from 'lodash'
 import "../styles/posts.scss"
 import TagLists from '../components/TagLists'
+
+const StyledImg = styled(Img)`
+  width: 120px;
+  height: auto;
+  border-radius: 50%;
+`
 
 const Posts = ({ data, pageContext }) => {
   const posts = data.allContentfulPost.edges
@@ -55,11 +62,12 @@ const Posts = ({ data, pageContext }) => {
           </CardList>
           <div>
           <p>{about.title}</p>
-          <Img
-            // className={styles.heroImage}
+          <StyledImg fluid={about.heroImage.fluid} />
+          {/* <Img
+            className={styles.heroImage}
             alt={about.heroImage}
             fluid={about.heroImage.fluid}
-          />
+          /> */}
           <PageBody body={about.body} />
           </div>
       </Container>
