@@ -155,6 +155,17 @@
           "omitted": false
         },
         {
+          "id": "image",
+          "name": "Image",
+          "type": "Link",
+          "localized": false,
+          "required": false,
+          "validations": [],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        },
+        {
           "id": "body",
           "name": "Body",
           "type": "Text",

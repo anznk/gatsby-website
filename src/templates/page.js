@@ -42,6 +42,15 @@ export const query = graphql`
           excerpt(pruneLength: 320)
         }
       }
+      heroImage {
+        title
+        fluid(maxWidth: 200) {
+          ...GatsbyContentfulFluid_withWebp_noBase64
+        }
+        ogimg: resize(width: 200) {
+          src
+        }
+      }
     }
   }
 `

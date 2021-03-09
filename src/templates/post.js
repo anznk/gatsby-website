@@ -10,6 +10,7 @@ import PostDetails from '../components/PostDetails'
 import SEO from '../components/SEO'
 
 const PostTemplate = ({ data, pageContext }) => {
+  console.log("data.contentfulPost",data.contentfulPost);
   const {
     title,
     metaDescription,
@@ -29,7 +30,7 @@ const PostTemplate = ({ data, pageContext }) => {
   } catch (error) {
     ogImage = null
   }
-
+  
   return (
     <Layout>
       <SEO
@@ -56,6 +57,7 @@ const PostTemplate = ({ data, pageContext }) => {
 }
 
 export const query = graphql`
+
   query($slug: String!) {
     contentfulPost(slug: { eq: $slug }) {
       title

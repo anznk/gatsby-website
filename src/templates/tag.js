@@ -11,15 +11,15 @@ import Pagination from '../components/Pagination'
 import Container from '../components/Container'
 
 const TagTemplate = ({ data, pageContext }) => {
-  console.log("data",data);
-  console.log("pageContext",pageContext);
+  // console.log("data",data);
+  // console.log("pageContext",pageContext);
   const posts = orderBy(
     data.contentfulTag.post,
     // eslint-disable-next-line
     [object => new moment(object.publishDateISO)],
     ['desc']
   )
-console.log("posts",posts);
+// console.log("posts",posts);
   const { title } = data.contentfulTag
   const numberOfPosts = posts.length
   const skip = pageContext.skip

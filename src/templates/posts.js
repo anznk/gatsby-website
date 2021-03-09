@@ -1,17 +1,21 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
+import Img from 'gatsby-image'
 import Layout from '../components/Layout'
 import CardList from '../components/CardList'
 import Card from '../components/Card'
 import Container from '../components/Container'
 import Pagination from '../components/Pagination'
+import PageBody from '../components/PageBody'
 import SEO from '../components/SEO'
 import { startCase } from 'lodash'
 import "../styles/posts.scss"
-// import TagTemplate from '../components/tag'
+import TagLists from '../components/TagLists'
 
 const Posts = ({ data, pageContext }) => {
   const posts = data.allContentfulPost.edges
+  const about = data.contentfulPage
+  console.log("about", about);
   const { humanPageNumber, basePath } = pageContext
   const isFirstPage = humanPageNumber === 1
   let featuredPost
@@ -33,6 +37,8 @@ const Posts = ({ data, pageContext }) => {
       <SEO title={startCase(basePath)} image={ogImage} />
 
       <Container>
+        {/* <TagLists /> */}
+        {/* {tags && <TagList tags={tags} basePath={basePath} />} */}
         <div className="hero">
           <div className="picture">
             <div className="square">
@@ -47,6 +53,15 @@ const Posts = ({ data, pageContext }) => {
               <Card key={post.id} {...post} basePath={basePath} />
             ))}
           </CardList>
+          <div>
+          <p>{about.title}</p>
+          <Img
+            // className={styles.heroImage}
+            alt={about.heroImage}
+            fluid={about.heroImage.fluid}
+          />
+          <PageBody body={about.body} />
+          </div>
       </Container>
       <Pagination context={pageContext} />
     </Layout>
@@ -82,6 +97,30 @@ export const query = graphql`
               excerpt(pruneLength: 80)
             }
           }
+        }
+      }
+    }
+    contentfulPage(slug: { eq: "about" }) {
+      title
+      slug
+      metaDescription {
+        internal {
+          content
+        }
+      }
+      body {
+        childMarkdownRemark {
+          html
+          excerpt(pruneLength: 320)
+        }
+      }
+      heroImage {
+        title
+        fluid(maxWidth: 200) {
+          ...GatsbyContentfulFluid_withWebp_noBase64
+        }
+        ogimg: resize(width: 200) {
+          src
         }
       }
     }
