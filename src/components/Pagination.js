@@ -73,48 +73,67 @@ const Select = styled.select`
 
 const Pagination = props => {
   function changePage(e) {
+    console.log("e.target.value", e.target.value);
+  
+    let page = parseInt(e.target.value, 10);
+    if(e.target.value === -1){
+      page = parseInt(props.context.paginationPath, 10) - 1
+      if(page <= 1){
+        page = "";
+      }
+    } else if(e.target.value === +1){
+      console.log("in!!")
+      page = props.context.paginationPath + 1;
+
+        console.log("page!!", page);
+      if(page > props.context.paginationPath){
+        page = props.context.paginationPath;
+      }
+      console.log("page", page);
+    }
+
+    
     navigate(
-      e.target.value
-        ? `${props.context.paginationPath}/${e.target.value}`
+      page
+        ? `${props.context.paginationPath}/${page}`
         : `${props.context.paginationPath}/`
     )
   }
 
   return (
     <>
-      {props.context.numberOfPages > 1 && (
-        <Wrapper>
-          <Numbers>
-            {props.context.humanPageNumber}{' '}
-            <Select
-              value={
-                props.context.humanPageNumber === 1
-                  ? ``
-                  : props.context.humanPageNumber
-              }
-              onChange={changePage}
-            >
-              {Array.from({ length: props.context.numberOfPages }, (_, i) => (
-                <option value={`${i === 0 ? `` : i + 1}`} key={`page${i + 1}`}>
-                  {i + 1}
-                </option>
-              ))}
-            </Select>
-            / {props.context.numberOfPages} <SelectIcon />
-          </Numbers>
-          <div>
+      {props.context.numberOfPages > 2 ? (
+        <div className="pager">
+          <ul class="pagination">
             {props.context.previousPagePath && (
-              <Button to={`${props.context.previousPagePath}`}>
-                <span>&larr;</span> Prev
-              </Button>
+              <Button to={`${props.context.previousPagePath}`}>« </Button>
             )}
+            <li onClick={changePage} value="" className="active">1</li>
+            <li onClick={changePage} value="2">2</li>
+            <li onClick={changePage} value={props.context.numberOfPages}>{props.context.numberOfPages}</li>
             {props.context.nextPagePath && (
-              <Button style={{ order: 3 }} to={`${props.context.nextPagePath}`}>
-                Next <span>&rarr;</span>
-              </Button>
+              <Button to={`${props.context.nextPagePath}`}>»</Button>
             )}
+          </ul>
+        </div>
+      ):
+      (
+        <>
+        {props.context.numberOfPages > 1 && (
+          <div className="pager">
+            <ul class="pagination">
+              {props.context.previousPagePath && (
+                <Button to={`${props.context.previousPagePath}`}>« </Button>
+              )}
+              <li onClick={changePage} value="" className="active">1</li>
+              <li onClick={changePage} value="2">2</li>
+              {props.context.nextPagePath && (
+                <Button to={`${props.context.nextPagePath}`}>»</Button>
+              )}
+            </ul>
           </div>
-        </Wrapper>
+        )}
+        </>
       )}
     </>
   )

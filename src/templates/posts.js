@@ -60,6 +60,7 @@ const Posts = ({ data, pageContext }) => {
               <Card key={post.id} {...post} basePath={basePath} />
             ))}
           </CardList>
+          <Pagination context={pageContext} />
           <div>
           <p>{about.title}</p>
           <StyledImg fluid={about.heroImage.fluid} />
@@ -71,7 +72,7 @@ const Posts = ({ data, pageContext }) => {
           <PageBody body={about.body} />
           </div>
       </Container>
-      <Pagination context={pageContext} />
+      
     </Layout>
   )
 }
