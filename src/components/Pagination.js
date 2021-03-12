@@ -2,6 +2,7 @@ import React from 'react'
 import { navigate, Link } from 'gatsby'
 import styled from '@emotion/styled'
 import SelectIcon from '../icons/SelectIcon'
+import "../styles/pager.scss"
 
 const Wrapper = styled.div`
   width: 100%;
@@ -14,91 +15,65 @@ const Wrapper = styled.div`
   align-items: baseline;
 `
 
-const Button = styled(Link)`
-  background: ${props => props.theme.colors.primary};
+const Li = styled.button`
+ background: DarkGray;
+  width: 50px;
+  height: 50px;
+  margin: 0 2px;
   color: white;
-  padding: 1rem;
-  border-radius: 2px;
-  margin: 0 0 0 0.5rem;
+  text-align: center; 
+  position: relative;
+  border-radius: 50px;
+  padding: 0;
+  display: inline-block;
   cursor: pointer;
   text-decoration: none;
-  transition: 0.3s all;
+  outline: none;
   &:hover {
-    background: ${props => props.theme.colors.highlight};
+    color: #000;
+    background: #E7DDBD;
   }
-  @media (hover: none) {
-    background: ${props => props.theme.colors.primary} !important;
+  &:focus {
+    outline: none;
   }
 `
-
-const Numbers = styled.div`
-  border: 1px solid ${props => props.theme.colors.secondary};
-  border-radius: 2px;
-  display: inline-block;
-  float: left;
-  color: ${props => props.theme.colors.text};
-  padding: 1rem;
-  background: white;
+const Button = styled(Link)`
+  background: DarkGray;
+  width: 50px;
+  height: 50px;
+  margin: 0 2px;
+  color: white;
+  top 20px;
+  text-align: center; 
   position: relative;
-  transition: 0.3s all;
-  svg {
-    fill: ${props => props.theme.colors.text};
-    margin: 0 0 0 0.25rem;
-    transition: 0.3s all;
-  }
-  &:hover {
-    background: ${props => props.theme.colors.tertiary};
-  }
-  @media (hover: none) {
-    background: white !important;
-  }
-`
-
-const Select = styled.select`
-  font-size: 1rem;
-  background: none;
-  border: none;
+  border-radius: 50px;
+  padding: 0;
+  display: inline-block;
   cursor: pointer;
-  position: absolute;
-  width: 100%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  color: transparent;
-  option {
-    color: black;
+  text-decoration: none;
+  span{
+    vertical-align: middle;
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display:table;
+    color: #fff;
+    text-decoration: none;
   }
 `
 
 const Pagination = props => {
   function changePage(e) {
-    console.log("e.target.value", e.target.value);
-  
-    let page = parseInt(e.target.value, 10);
-    if(e.target.value === -1){
-      page = parseInt(props.context.paginationPath, 10) - 1
-      if(page <= 1){
-        page = "";
-      }
-    } else if(e.target.value === +1){
-      console.log("in!!")
-      page = props.context.paginationPath + 1;
-
-        console.log("page!!", page);
-      if(page > props.context.paginationPath){
-        page = props.context.paginationPath;
-      }
-      console.log("page", page);
-    }
-
-    
     navigate(
-      page
-        ? `${props.context.paginationPath}/${page}`
+      e.target.value
+        ? `${props.context.paginationPath}/${e.target.value}`
         : `${props.context.paginationPath}/`
     )
   }
+
 
   return (
     <>
@@ -106,13 +81,13 @@ const Pagination = props => {
         <div className="pager">
           <ul class="pagination">
             {props.context.previousPagePath && (
-              <Button to={`${props.context.previousPagePath}`}>« </Button>
-            )}
-            <li onClick={changePage} value="" className="active">1</li>
-            <li onClick={changePage} value="2">2</li>
-            <li onClick={changePage} value={props.context.numberOfPages}>{props.context.numberOfPages}</li>
+              <Button to={`${props.context.previousPagePath}`}><span>«</span></Button>
+            )}            
+            <Li onClick={changePage} value="" className={props.context.humanPageNumber === 1 && "active"}>1</Li>
+            <Li onClick={changePage} value="2" className={props.context.humanPageNumber === 2 && "active"}>2</Li>
+            <Li onClick={changePage} value={props.context.numberOfPages} className={props.context.humanPageNumber === props.context.numberOfPages ? "active" : ""}>{props.context.numberOfPages}</Li>
             {props.context.nextPagePath && (
-              <Button to={`${props.context.nextPagePath}`}>»</Button>
+              <Button to={`${props.context.nextPagePath}`}><span>»</span></Button>
             )}
           </ul>
         </div>
@@ -123,12 +98,12 @@ const Pagination = props => {
           <div className="pager">
             <ul class="pagination">
               {props.context.previousPagePath && (
-                <Button to={`${props.context.previousPagePath}`}>« </Button>
+                <Button to={`${props.context.previousPagePath}`}><span>«</span></Button>
               )}
-              <li onClick={changePage} value="" className="active">1</li>
-              <li onClick={changePage} value="2">2</li>
+              <Li onClick={changePage} value="" className={props.context.humanPageNumber === 1 && "active"}>1</Li>
+              <Li onClick={changePage} value="2" className={props.context.humanPageNumber === 2 && "active"}>2</Li>
               {props.context.nextPagePath && (
-                <Button to={`${props.context.nextPagePath}`}>»</Button>
+                <Button to={`${props.context.nextPagePath}`}><span>»</span></Button>
               )}
             </ul>
           </div>
