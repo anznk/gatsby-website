@@ -28,13 +28,13 @@ const Li = styled.button`
   display: inline-block;
   cursor: pointer;
   text-decoration: none;
-  outline: none;
+  outline: none !important;
   &:hover {
     color: #000;
     background: #E7DDBD;
   }
   &:focus {
-    outline: none;
+    outline: none !important;
   }
 `
 const Button = styled(Link)`
