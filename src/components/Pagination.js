@@ -85,6 +85,12 @@ const Pagination = props => {
             )}            
             <Li onClick={changePage} value="" className={props.context.humanPageNumber === 1 && "active"}>1</Li>
             <Li onClick={changePage} value="2" className={props.context.humanPageNumber === 2 && "active"}>2</Li>
+            {props.context.humanPageNumber > 3 && props.context.humanPageNumber != props.context.numberOfPages &&
+              <>
+                ...
+                <Li onClick={changePage} value={props.context.humanPageNumber} className="active">{props.context.humanPageNumber}</Li>
+              </> 
+            }
             <Li onClick={changePage} value={props.context.numberOfPages} className={props.context.humanPageNumber === props.context.numberOfPages ? "active" : ""}>{props.context.numberOfPages}</Li>
             {props.context.nextPagePath && (
               <Button to={`${props.context.nextPagePath}`}><span>»</span></Button>
