@@ -124,6 +124,7 @@ type ContentfulTag implements Node @derivedTypes @dontInfer {
   title: String
   slug: String
   post: [ContentfulPost] @link(by: "id", from: "post___NODE")
+  heroImage: ContentfulAsset @link(by: "id", from: "heroImage___NODE")
   spaceId: String
   contentful_id: String
   createdAt: Date @dateformat

@@ -35,6 +35,18 @@ module.exports = {
         name: 'Contact',
         slug: '/contact/',
       },
+      {
+        name: 'Fruits',
+        slug: '/tag/fruits/',
+      },
+      {
+        name: 'Vegetable',
+        slug: '/tag/vegetable/',
+      },
+      {
+        name: 'Eggplant',
+        slug: '/tag/eggplant/',
+      }
     ],
     postsPerFirstPage: 7,
     postsPerPage: 6,

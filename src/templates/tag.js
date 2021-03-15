@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { startCase, orderBy } from 'lodash'
 import SEO from '../components/SEO'
+import Hero from '../components/Hero'
 import moment from 'moment'
 import Layout from '../components/Layout'
 import Card from '../components/Card'
@@ -9,10 +10,11 @@ import CardList from '../components/CardList'
 import PageTitle from '../components/PageTitle'
 import Pagination from '../components/Pagination'
 import Container from '../components/Container'
+import Img from 'gatsby-image'
+import "../styles/posts.scss"
 
 const TagTemplate = ({ data, pageContext }) => {
-  // console.log("data",data);
-  // console.log("pageContext",pageContext);
+
   const posts = orderBy(
     data.contentfulTag.post,
     // eslint-disable-next-line
@@ -20,7 +22,7 @@ const TagTemplate = ({ data, pageContext }) => {
     ['desc']
   )
 // console.log("posts",posts);
-  const { title } = data.contentfulTag
+  const { title, heroImage } = data.contentfulTag
   const numberOfPosts = posts.length
   const skip = pageContext.skip
   const limit = pageContext.limit
@@ -32,6 +34,7 @@ const TagTemplate = ({ data, pageContext }) => {
   } catch (error) {
     ogImage = null
   }
+  console.log("heroImage", heroImage);
 
   return (
     <>
@@ -42,7 +45,10 @@ const TagTemplate = ({ data, pageContext }) => {
           image={ogImage}
         />
         <Container>
-        <div>aaaaa</div>
+          <Img
+            alt={heroImage.title}
+            fluid={heroImage.fluid}
+            />
           {/* <PageTitle small>
             {numberOfPosts} Posts Tagged: &ldquo;
             {title}
@@ -66,6 +72,12 @@ export const query = graphql`
       title
       id
       slug
+      heroImage {
+        title
+        fluid(maxWidth: 200) {
+          ...GatsbyContentfulFluid_withWebp_noBase64
+        }
+      }
       post {
         id
         title
