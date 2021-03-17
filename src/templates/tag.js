@@ -10,8 +10,12 @@ import CardList from '../components/CardList'
 import PageTitle from '../components/PageTitle'
 import Pagination from '../components/Pagination'
 import Container from '../components/Container'
+import styled from '@emotion/styled'
 
 
+const HeroArea = styled.div`
+  margin-bottom: 50px;
+`
 
 const TagTemplate = ({ data, pageContext }) => {
 
@@ -32,6 +36,7 @@ const TagTemplate = ({ data, pageContext }) => {
   } catch (error) {
     ogImage = null
   }
+  
   return (
     <>
       <Layout>
@@ -41,7 +46,9 @@ const TagTemplate = ({ data, pageContext }) => {
           image={ogImage}
         />
         <Container>
+        <HeroArea>
           <Hero title={heroImage.title} image={heroImage} height={'50vh'} />  
+        </HeroArea>
           <CardList>
             {posts.slice(skip, limit * humanPageNumber).map(post => (
               <Card {...post} key={post.id} basePath={basePath} />
