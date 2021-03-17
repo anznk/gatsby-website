@@ -10,8 +10,8 @@ import CardList from '../components/CardList'
 import PageTitle from '../components/PageTitle'
 import Pagination from '../components/Pagination'
 import Container from '../components/Container'
-import Img from 'gatsby-image'
-import "../styles/posts.scss"
+
+
 
 const TagTemplate = ({ data, pageContext }) => {
 
@@ -21,21 +21,17 @@ const TagTemplate = ({ data, pageContext }) => {
     [object => new moment(object.publishDateISO)],
     ['desc']
   )
-// console.log("posts",posts);
   const { title, heroImage } = data.contentfulTag
   const numberOfPosts = posts.length
   const skip = pageContext.skip
   const limit = pageContext.limit
   const { humanPageNumber, basePath } = pageContext
-
   let ogImage
   try {
     ogImage = posts[0].heroImage.ogimg.src
   } catch (error) {
     ogImage = null
   }
-  console.log("heroImage", heroImage);
-
   return (
     <>
       <Layout>
@@ -45,15 +41,7 @@ const TagTemplate = ({ data, pageContext }) => {
           image={ogImage}
         />
         <Container>
-          <Img
-            alt={heroImage.title}
-            fluid={heroImage.fluid}
-            />
-          {/* <PageTitle small>
-            {numberOfPosts} Posts Tagged: &ldquo;
-            {title}
-            &rdquo;
-          </PageTitle> */}
+          <Hero title={heroImage.title} image={heroImage} height={'50vh'} />  
           <CardList>
             {posts.slice(skip, limit * humanPageNumber).map(post => (
               <Card {...post} key={post.id} basePath={basePath} />

@@ -34,7 +34,7 @@ const Nav = styled.nav`
     color: DarkGray;
     font-weight: 600;
     transition: all 0.2s;
-    border-bottom: 2px solid ${props => props.theme.colors.text};
+    
     &:hover {
       color: white;
     }
@@ -42,7 +42,7 @@ const Nav = styled.nav`
 `
 
 const activeLinkStyle = {
-  color: 'white',
+  color: '#E7DDBD',
 }
 
 const Menu = () => {

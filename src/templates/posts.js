@@ -53,7 +53,7 @@ const Posts = ({ data, pageContext }) => {
             </div>
           </div>
         </div>
-        <Link to="/tag/obedient/">obedient</Link>
+        {/* <Link to="/tag/obedient/">obedient</Link> */}
         {/* <TagTemplate tags="obedient" basePath="/tag/" /> */}
           <CardList>
             {posts.map(({ node: post }) => (

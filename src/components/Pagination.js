@@ -19,7 +19,7 @@ const Li = styled.button`
  background: DarkGray;
   width: 50px;
   height: 50px;
-  margin: 0 2px;
+  margin: 0 5px;
   color: white;
   text-align: center; 
   position: relative;
@@ -41,7 +41,7 @@ const Button = styled(Link)`
   background: DarkGray;
   width: 50px;
   height: 50px;
-  margin: 0 2px;
+  margin: 0 5px;
   color: white;
   top 20px;
   text-align: center; 
