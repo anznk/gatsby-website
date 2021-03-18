@@ -17,7 +17,8 @@ const StyledImg = styled(Img)`
   width: 120px;
   height: auto;
   border-radius: 50%;
-  margin: 0 auto;
+  margin: 0 auto 20px;
+  border: 1px solid grey;
 `
 
 const Posts = ({ data, pageContext }) => {
@@ -50,12 +51,10 @@ const Posts = ({ data, pageContext }) => {
         <div className="hero">
           <div className="picture">
             <div className="square">
-              <p>Life in Vancouver</p>
+              <p>Tomato is Fruits</p>
             </div>
           </div>
         </div>
-        {/* <Link to="/tag/obedient/">obedient</Link> */}
-        {/* <TagTemplate tags="obedient" basePath="/tag/" /> */}
           <CardList>
             {posts.map(({ node: post }) => (
               <Card key={post.id} {...post} basePath={basePath} />
@@ -63,9 +62,8 @@ const Posts = ({ data, pageContext }) => {
           </CardList>
           <Pagination context={pageContext} />
           <div className="about">
-            {/* <p>{about.title}</p> */}
             <StyledImg fluid={about.heroImage.fluid} />
-            <p>{about.title}</p>
+            <p class="title">{about.title}</p>
             <PageBody body={about.body} />
           </div>
       </Container>
