@@ -17,6 +17,7 @@ const StyledImg = styled(Img)`
   width: 120px;
   height: auto;
   border-radius: 50%;
+  margin: 0 auto;
 `
 
 const Posts = ({ data, pageContext }) => {
@@ -61,15 +62,11 @@ const Posts = ({ data, pageContext }) => {
             ))}
           </CardList>
           <Pagination context={pageContext} />
-          <div>
-          <p>{about.title}</p>
-          <StyledImg fluid={about.heroImage.fluid} />
-          {/* <Img
-            className={styles.heroImage}
-            alt={about.heroImage}
-            fluid={about.heroImage.fluid}
-          /> */}
-          <PageBody body={about.body} />
+          <div className="about">
+            {/* <p>{about.title}</p> */}
+            <StyledImg fluid={about.heroImage.fluid} />
+            <p>{about.title}</p>
+            <PageBody body={about.body} />
           </div>
       </Container>
       
