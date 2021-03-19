@@ -10,7 +10,6 @@
   height: 300px;
   background-image: url("../../static/images/GreenLeaves.jpg");
   background-size: cover;
-
 }
 .square{
   height: 0; 
@@ -73,4 +72,23 @@
   margin: 0;
   font-size: 1.125em;
   font-weight: bold;
+}
+
+@media(max-width: 600px) {
+.picture{
+  height: 150px;
+}
+.square{
+  width: 60%;
+  border-bottom: 150px solid #E7DDBD;
+  border-right: 100px solid transparent;
+  p{
+    color: white;
+    font-size: 20px;
+    line-height: 1.5rem;
+    width: 100px;
+    padding-top: 55%;
+  }
+}
+
 }
