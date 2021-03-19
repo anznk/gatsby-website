@@ -9,6 +9,9 @@ const Wrapper = styled.section`
   @media (min-width: ${props => props.theme.responsive.small}) {
     height: ${props => props.height || 'auto'};
   }
+  @media (max-width: 600px) {
+    min-height: 200px;
+  }
 `
 const BgImg = styled(Img)`
   position: absolute;

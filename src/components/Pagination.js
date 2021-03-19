@@ -79,7 +79,7 @@ const Pagination = props => {
     <>
       {props.context.numberOfPages > 2 ? (
         <div className="pager">
-          <ul class="pagination">
+          <ul className="pagination">
             {props.context.previousPagePath && (
               <Button to={`${props.context.previousPagePath}`}><span>«</span></Button>
             )}            
@@ -102,7 +102,7 @@ const Pagination = props => {
         <>
         {props.context.numberOfPages > 1 && (
           <div className="pager">
-            <ul class="pagination">
+            <ul className="pagination">
               {props.context.previousPagePath && (
                 <Button to={`${props.context.previousPagePath}`}><span>«</span></Button>
               )}
